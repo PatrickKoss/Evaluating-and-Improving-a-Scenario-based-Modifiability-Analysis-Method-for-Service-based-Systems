@@ -319,7 +319,6 @@
 
 <style scoped>
   #root {
-    min-height: 100vh;
     height: 100%;
   }
 </style>
