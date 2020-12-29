@@ -14,13 +14,12 @@ services:
         build:
           context: .
           dockerfile: ./Dockerfile
-          args:
-            - VUE_APP_BACKEND_URL=http://localhost:3000
         ports:
             - 3000:3000
             - 8000:80
         environment:
             - DB_HOST=ms-scenario-evaluation-db:27017
+            - VUE_APP_BACKEND_URL=http://localhost:3000
         depends_on:
             - ms-scenario-evaluation-db
 volumes:

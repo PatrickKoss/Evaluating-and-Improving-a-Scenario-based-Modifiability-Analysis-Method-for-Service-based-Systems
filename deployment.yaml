@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: scenario-evaluation-db
+  namespace: own
+  labels:
+    app: scenario-evaluation-db
+spec:
+  selector:
+    app: scenario-evaluation-db
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongodb-standalone
+  namespace: own
+spec:
+  serviceName: scenario-evaluation-db
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scenario-evaluation-db
+  template:
+    metadata:
+      labels:
+        app: scenario-evaluation-db
+        selector: mongodb-standalone
+    spec:
+      containers:
+      - name: mongodb-standalone
+        image: mongo:4.0.8
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: scenario-evaluation
+  namespace: own
+spec:
+  selector:
+    app: scenario-evaluation
+  ports:
+    - protocol: TCP
+      name: frontend
+      port: 80
+      targetPort: 80
+    - protocol: TCP
+      name: api
+      port: 3000
+      targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scenario-evaluation
+  namespace: own
+  labels:
+    app: scenario-evaluation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scenario-evaluation
+  template:
+    metadata:
+      labels:
+        app: scenario-evaluation
+    spec:
+      containers:
+      - name: scenario-evaluation
+        image: patrickkoss/scenario-evaluation:0.14
+        env:
+          - name: DB_HOST
+            value: "scenario-evaluation-db.own.svc.cluster.local:27017"

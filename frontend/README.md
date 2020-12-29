@@ -8,13 +8,13 @@
 -   `src/router.ts`: configuration of routes (`route`: binding a `component` to a certain `path`)
 -   `src/components/`: directory for all vue files
 -   `src/App.vue`: basic app skeleton with header/nav, body, and footer
--   `src/config/index.ts`: configuration file with app or environment specific properties
+-   `src/configuration/index.ts`: configuration file with app or environment specific properties
 
 ## Prerequisites and Usage
 
 -   Install Node.js: <https://nodejs.org/en/download/>
 -   Run `npm install` in this directory to install dependencies of this project
--   The frontend expects the `api` to run on <http://localhost:3000> (adjustable in `src/config/index.ts`)
+-   The frontend expects the `api` to run on <http://localhost:3000> (adjustable in `src/configuration/index.ts`)
 -   Run `npm start`
 -   Your browser will open the frontend at <http://localhost:8000> and you can start using the application
 
@@ -24,7 +24,7 @@
 # install dependencies
 npm install
 
-# serve locally with hot reload (localhost:8000, adjustable in webpack.dev.config.js)
+# serve locally with hot reload (localhost:8000, adjustable in webpack.dev.configuration.js)
 npm start
 
 # build for production with minification

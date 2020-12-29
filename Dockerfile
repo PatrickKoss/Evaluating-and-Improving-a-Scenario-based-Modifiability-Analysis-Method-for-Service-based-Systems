@@ -9,9 +9,6 @@ WORKDIR /app
 # Clone the web UI repo
 COPY . .
 
-ARG VUE_APP_BACKEND_URL
-ENV VUE_APP_BACKEND_URL=$VUE_APP_BACKEND_URL
-
 # Build API
 RUN cd ./api && npm i --no-progress && npm run build
 
