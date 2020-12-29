@@ -4,6 +4,14 @@
     <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
     <v-toolbar-title justify-center>{{strings.toolbarName}}</v-toolbar-title>
     <v-spacer></v-spacer>
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on }">
+        <v-btn icon @click="goToDataProtection('http://patrick-koss.de/#/privacy-policy')" v-on="on">
+          <v-icon>security</v-icon>
+        </v-btn>
+      </template>
+      <span>Privacy Policy</span>
+    </v-tooltip>
     <v-menu :dark="darkeningGeneral" bottom="bottom" left="left" offset-y="offset-y" open-on-hover="open-on-hover">
       <v-btn icon large slot="activator">
         <v-avatar size="32px" tile>
@@ -130,6 +138,10 @@
         this.theme = this.strings.themeLight;
         this.themeSwitch = false;
       }
+    }
+
+    goToDataProtection(link) {
+      window.location = link
     }
   }
 </script>

@@ -11,7 +11,11 @@ services:
     # Application components (API and web frontend)
     ms-scenario-evaluation:
         container_name: ms-scenario-evaluation
-        image: xjreb/ms-scenario-evaluation:latest
+        build:
+          context: .
+          dockerfile: ./Dockerfile
+          args:
+            - VUE_APP_BACKEND_URL=http://localhost:3000
         ports:
             - 3000:3000
             - 8000:80

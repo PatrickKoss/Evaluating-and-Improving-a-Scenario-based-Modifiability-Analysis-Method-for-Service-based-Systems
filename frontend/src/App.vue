@@ -15,6 +15,7 @@
                                   v-on:change-route="changeRoute"
                                   v-on:closed-Dialog="setDialog"></CLeaveEditingProcessDialog>
     </v-layout>
+    <CookieBanner />
   </v-app>
 </template>
 
@@ -31,6 +32,7 @@
   import {SystemRestClient} from "./model/SystemRestClient";
   import {AppStore, StateModule} from "./store/AppStore";
   import {VueStateField} from "./store/State";
+  import CookieBanner from "./components/general/CookieBanner.vue"
 
   @Component({
     name: "app",
@@ -38,7 +40,8 @@
       "c-navigation-drawer": CNavigationDrawer,
       "c-toolbar": CToolBar,
       "c-content": CContent,
-      CLeaveEditingProcessDialog
+      CLeaveEditingProcessDialog,
+      CookieBanner
     }
   })
   export default class App extends Vue {
